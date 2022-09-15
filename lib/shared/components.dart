@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:portfolio/shared/styles/themes.dart';
 
@@ -166,9 +167,23 @@ void navigateAndFinish(
       },
     );
 
+void showToast({
+  required String text,
+  required ToastStates state,
+}) =>
+    Fluttertoast.showToast(
+      msg: text,
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.CENTER,
+      webPosition:"bottom center",
+      timeInSecForIosWeb: 5,
+      backgroundColor: chooseToastColor(state),
+      textColor:kTextColor,
+      fontSize: 18.0,
+    );
 
 // enum
-enum ToastStates {SUCCESS, ERROR, WARNING}
+enum ToastStates {SUCCESS, ERROR, WARNING,Copied}
 
 Color chooseToastColor(ToastStates state)
 {
@@ -184,6 +199,9 @@ Color chooseToastColor(ToastStates state)
       break;
     case ToastStates.WARNING:
       color = Colors.amber;
+      break;
+      case ToastStates.Copied:
+      color = Colors.white;
       break;
   }
 

@@ -7,9 +7,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_cubit/fonts_cubit.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
-
-import '../screens/color_palettes_screen/blocky_color.dart';
 import '../screens/fonts_screen/fonts_cubit/fonts_states.dart';
+import '../screens/palettes_screen/blocky_color.dart';
 import '../shared/styles/themes.dart';
 
 class ToolBarDetailsScreen extends StatelessWidget {
@@ -108,7 +107,8 @@ ToolBarDetailsScreen({
                       borderRadius:BorderRadius.circular(1)
                   ),
                   child: DropdownButton<String>(
-
+                    elevation: 0,
+                    borderRadius: BorderRadius.circular(5),
                     underline: Container(
                       height: 1,
                       color: Theme.of(context).primaryColor.withOpacity(.1),
@@ -117,7 +117,7 @@ ToolBarDetailsScreen({
                     icon: const Icon(Icons.keyboard_arrow_down_rounded),
                     iconEnabledColor:HexColor('#404456'),
                     iconSize:22,
-                    dropdownColor: Theme.of(context).scaffoldBackgroundColor,
+                    dropdownColor: Colors.white,
                     alignment: Alignment.center,
                     style:  TextStyle(
                       color:HexColor('#404456') ,

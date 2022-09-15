@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_cubit/fonts_cubit.dart';
+import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
+import 'package:portfolio/screens/gradients_screen/cubit/gradient_cubit.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_cubit.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_state.dart';
-import 'package:portfolio/screens/home_screen/home_screen.dart';
 import 'package:portfolio/screens/icons_screen/cubit/icons_cubit.dart';
+import 'package:portfolio/screens/palettes_screen/cubit/color_palettes_cubit.dart';
 import 'package:portfolio/shared/styles/themes.dart';
-
 import 'Layout/Layout_screen.dart';
 
 void main() async{
@@ -34,6 +36,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context)=>IconsCubit(),
         ),
+        BlocProvider(
+          create: (context)=>PalettesCubit(),
+        ), BlocProvider(
+          create: (context)=>GradientCubit(),
+        ),
 
       ],
       child: BlocConsumer<HomeCubit,HomeStates>(
@@ -47,7 +54,7 @@ class MyApp extends StatelessWidget {
           darkTheme: darkMode(context),
           themeMode:ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          home:  LayoutScreen()  ,
+          home:  FontsScreen(),
         );
       },
 

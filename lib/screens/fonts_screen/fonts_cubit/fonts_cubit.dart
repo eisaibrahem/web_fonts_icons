@@ -93,5 +93,13 @@ class FontsCubit extends Cubit<FontsStates> {
     emit(UseBackGraundPaletState());
   }
 
+  double angelGradient =-1;
+
+  void changeAngelGradient(double value){
+    angelGradient=value;
+    emit(ChangeAngelGradientState());
+  }
+
+
 
   }

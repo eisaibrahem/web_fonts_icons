@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:portfolio/screens/color_palettes_screen/blocky_color.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_cubit.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_state.dart';
 import 'package:sidebarx/sidebarx.dart';

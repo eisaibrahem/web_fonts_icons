@@ -54,6 +54,7 @@ dependencies:
   adobe_xd: ^2.0.1
   rxdart: ^0.27.5
   syncfusion_flutter_sliders: ^20.2.46
+  fluttertoast:
 
 
 
@@ -117,7 +118,7 @@ flutter:
 
     - family: Microsoft Tai Le
       fonts:
-        - asset: assets/fonts/msjhbd.ttc
+        - asset: assets/fonts/taile_0.ttf
 
     - family: Leelawadee UI
       fonts:

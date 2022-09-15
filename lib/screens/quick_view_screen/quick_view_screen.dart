@@ -4,15 +4,22 @@ import 'package:portfolio/custom_widgets/custom_buttons/save_button.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
 import 'package:portfolio/shared/styles/themes.dart';
 import '../../custom_widgets/custom_buttons/my_custom_button.dart';
+import '../../custom_widgets/item_palette.dart';
 import '../../custom_widgets/my_custom_pupup_item.dart';
 
 class QuickViewScreen extends StatelessWidget {
-  bool isIconsScreen;
-   QuickViewScreen({
-    this.isIconsScreen=false,
+ final  bool isIconsScreen;
+ final  bool isPalettesScreen;
+ final  bool isGradientScreen;
 
-  });
+   QuickViewScreen({Key? key,
+    required this.isIconsScreen,
+    required this.isPalettesScreen,
+    required this.isGradientScreen,
 
+  }) : super(key: key);
+
+  final ScrollController scrollQuickViewCategoryController =ScrollController();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,57 +55,73 @@ class QuickViewScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: CustomPopupMenu(
-                  arrowColor: Colors.white,
+                  arrowColor: kPrimaryColor,
                   verticalMargin: 0,
                   enablePassEvent: false,
                   barrierColor: Colors.transparent,
                   menuBuilder: () {
                     return Container(
+                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
                       decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
+                        color: kPrimaryColor,
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       child: Column(
                         children: [
-                          isIconsScreen?MyCustomPopUpItem(
+                          MyCustomPopUpItem(
                             onTap: () {
+                              if(isIconsScreen){
+
+                              }
+                              else if(isPalettesScreen){
+
+                              }else{
+
+                              }
 
                             },
-                            svg:disLikeSVG,
-                            text:'Save Icon' ,
+                            text:isIconsScreen?'Save Icon':isPalettesScreen?'Save Palette':isGradientScreen? 'Save Gradient':'Save Font' ,
+                            textSize:15 ,
+                            widthSVG:20 ,
+                            heightSVG: 20,
+                            width: 180,
+                          ),
+                          MyCustomPopUpItem(
+                            onTap: (){
+                              if(isIconsScreen){
 
-                          ) :MyCustomPopUpItem(
-                              onTap: () {
+                              }
+                              else if(isPalettesScreen){
 
-                              },
-                              svg:disLikeSVG,
-                              text:'Save Font' ,
+                              }else{
+
+                              }
+                            },
+                            height: 40,
+                            text:isIconsScreen?'Copy Icon ID':isPalettesScreen?'Copy Palette ID':isGradientScreen?'Copy Gradient ID':'Copy Font ID',
+                            icon:Icons.copy,
+                            iconSize: 18,
+                            textSize: 15,
+                            width: 180,
 
                           ),
-                          isIconsScreen?MyCustomPopUpItem(
-                            onTap: (){
-
-                            },
-                            height: 40,
-                            text:'Copy Icon ID',
-                            icon:Icons.copy,
-
-                          ) :MyCustomPopUpItem(
-                            onTap: (){
-
-                             },
-                            height: 40,
-                            text:'Copy Font ID',
-                            icon:Icons.copy,
-
-                             ),
                           MyCustomPopUpItem(
                               onTap: () {
+                                if(isIconsScreen){
 
+                                }
+                                else if(isPalettesScreen){
+
+                                }else{
+
+                                }
                               },
+                            width: 180,
                               height: 40,
-                              icon: Icons.menu,
-                              text:  'Explore Similar',
+                              icon: Icons.file_download_outlined,
+                              text:  isIconsScreen?'Download Icon':isPalettesScreen?'Download Palette':isGradientScreen? 'Download Gradient':'Download Font',
+                               iconSize: 20,
+                              textSize: 15,
                           ),
                         ],
                       ),
@@ -114,16 +137,50 @@ class QuickViewScreen extends StatelessWidget {
             ],
           ),
           Container(
-            color: kPrimaryColor,
-            height:isIconsScreen? 280:300,
-            width:isIconsScreen?400:600,
-            padding: const EdgeInsets.all(10),
+            color:isPalettesScreen?Colors.white: kPrimaryColor,
+            height:(isIconsScreen||isPalettesScreen)? 280:300,
+            width:(isIconsScreen||isGradientScreen)?400:600,
+            padding: const EdgeInsets.all(8),
             alignment: Alignment.center,
             child:isIconsScreen? const Icon(
               Icons.sports_baseball,
               size: 150,
               color: Colors.black,
-            ) :const Text(
+            ) :isPalettesScreen? buildListOFColorsPalette():
+            isGradientScreen? Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  height: 250,
+                  width: 380,
+                  margin: const EdgeInsets.all(0),
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [
+                          Color(0xFF3366FF),
+                          Color(0xFF00CCFF),
+                        ],
+                        begin: FractionalOffset(0.0, 0.0),
+                        end: FractionalOffset(1.0, 0.0),
+                        stops: [0.0, 1.0],
+                        tileMode: TileMode.clamp),
+                  ),
+                ),
+                const SizedBox(height: 8,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:List.generate(3, (index)
+                  => const Padding(
+                    padding: EdgeInsets.all(2.0),
+                    child: CircleAvatar(
+                      backgroundColor: Colors.lightBlue,
+                      radius: 10,
+                    ),
+                  ),
+                  ),
+                ),
+              ],
+            ):const Text(
               'ZOOMA',
               style: TextStyle(
                 fontSize: 70,
@@ -138,10 +195,10 @@ class QuickViewScreen extends StatelessWidget {
                 child: MyCustomButton(
                   onTap: (){},
                   borderRadius: 3,
-                  height: 20,
-                  width: 60,
+                  height: 40,
+                  width: 70,
                   text: 'PDF',
-                  textSize: 16,
+                  textSize: 17,
                   paddingHorizontal: 8,
                   paddingVertical: 2,
                   marginVertical: 10,
@@ -150,10 +207,10 @@ class QuickViewScreen extends StatelessWidget {
               MyCustomButton(
                 onTap: (){},
                 borderRadius: 3,
-                height: 20,
-                width: 60,
-                text: 'PDF',
-                textSize: 16,
+                height: 40,
+                width: 70,
+                text: 'JPG',
+                textSize: 17,
                 paddingHorizontal: 8,
                 paddingVertical: 2,
                 marginVertical: 10,
@@ -161,10 +218,10 @@ class QuickViewScreen extends StatelessWidget {
               MyCustomButton(
                 onTap: (){},
                 borderRadius: 3,
-                height: 20,
-                width: 60,
-                text: 'PDF',
-                textSize: 16,
+                height: 40,
+                width: 70,
+                text: 'PNG',
+                textSize: 17,
                 paddingHorizontal: 8,
                 paddingVertical: 2,
                 marginVertical: 10,
@@ -172,10 +229,10 @@ class QuickViewScreen extends StatelessWidget {
               MyCustomButton(
                 onTap: (){},
                 borderRadius: 3,
-                height: 20,
-                width: 60,
-                text: 'PDF',
-                textSize: 16,
+                height: 40,
+                width: 70,
+                text: 'SVG',
+                textSize: 17,
                 paddingHorizontal: 8,
                 paddingVertical: 2,
                 marginVertical: 10,
@@ -183,16 +240,156 @@ class QuickViewScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10.0,bottom: 10,right: 10),
                 child: SaveButton(
-                  width: 60,
+                  width: 70,
                   height: 40,
                   borderRadius: 3,
                   color: kPrimaryColor,
-                  iconsSize: 30,
+                  iconsSize: 32,
                 ),
               )
             ],
-          )
-              :Row(
+          ) :isPalettesScreen?Row(
+            children: [
+              const SizedBox(width: 8,),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'HEX',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              const SizedBox(width: 8,),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'HSB',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              const SizedBox(width: 8,),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'HSL',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              const SizedBox(width: 8,),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'RGB',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              const SizedBox(width: 8,),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'CMYK',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              const Spacer(),
+              MyCustomButton(
+                onTap: () {},
+                height: 50,
+                width: 50,
+                borderRadius: 3,
+                iconSize: 28,
+                icon: Icons.download,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SaveButton(
+                  iconsSize: 33,
+                  width: 50,
+                  height: 50,
+                ),
+              ),
+            ],
+          ) :isGradientScreen?Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(width: 10,),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'HEX',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'HSB',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'HSL',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'RGB',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              MyCustomButton(
+                onTap: (){},
+                borderRadius: 3,
+                height: 40,
+                width: 70,
+                text: 'CMYK',
+                textSize: 17,
+                paddingHorizontal: 8,
+                paddingVertical: 2,
+                marginVertical: 10,
+              ),
+              const SizedBox(width: 10,)
+            ],
+          ) :Row(
             children: [
               Container(
                 margin:
@@ -207,13 +404,14 @@ class QuickViewScreen extends StatelessWidget {
                       paddingHorizontal: 3,
                       marginHorizontal: 0,
                       height: 50,
-                      elevation: 0,
                       iconWidget: Icon(
                         Icons.arrow_back_ios,
                         color: kTextColor,
                         size: 15,
                       ),
-                      onTap: () {},
+                      onTap: (){
+                        scrollQuickViewCategoryController.animateTo(-500, duration: Duration(milliseconds: 500),curve: Curves.easeIn);
+                      },
                     ),
                     const SizedBox(
                       width: 5,
@@ -227,6 +425,7 @@ class QuickViewScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(5),
                         ),
                         child: SingleChildScrollView(
+                          controller: scrollQuickViewCategoryController,
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: List.generate(
@@ -256,13 +455,14 @@ class QuickViewScreen extends StatelessWidget {
                       paddingHorizontal: 3,
                       marginHorizontal: 0,
                       height: 50,
-                      elevation: 0,
                       iconWidget: Icon(
                         Icons.arrow_forward_ios,
                         color: kTextColor,
                         size: 15,
                       ),
-                      onTap: () {},
+                      onTap: (){
+                        scrollQuickViewCategoryController.animateTo(500, duration: Duration(milliseconds: 500),curve: Curves.easeIn);
+                      },
                     ),
                   ],
                 ),

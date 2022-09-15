@@ -8,7 +8,11 @@ import '../../shared/styles/themes.dart';
 
 class SaveButton extends StatefulWidget {
 final double height;
+final Future<bool?> Function(bool)? onTap;
 final double width;
+final double widthSVG;
+final double heightSVG;
+final double paddingVertical;
 final double elevation;
 final double borderRadius;
 final double iconsSize;
@@ -17,7 +21,11 @@ final Color color;
 
 SaveButton({
   this.height=30,
+  this.onTap,
+  this.paddingVertical=3,
   this.width=50,
+  this.widthSVG=20,
+  this.heightSVG=20,
   this.elevation=0,
   this.borderRadius=3,
   this.color=kPrimaryColor,
@@ -63,6 +71,7 @@ class _SaveButtonState extends State<SaveButton> {
       child: Material(
         elevation: widget.elevation,
         child: Container(
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             color: widget.color,
             borderRadius: BorderRadius.circular(widget.borderRadius),
@@ -70,16 +79,23 @@ class _SaveButtonState extends State<SaveButton> {
           width: widget.width,
           height: widget.height,
           child: LikeButton(
+            onTap: widget.onTap,
             bubblesSize: 0,
             circleSize: 0,
+            padding: EdgeInsets.zero,
             size:widget.iconsSize,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             animationDuration:
             const Duration(milliseconds: 200),
             likeBuilder: (bol) {
               return bol
                   ? Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 4),
-                child: SvgPicture.string(likeSVG),
+                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 2),
+                child: SvgPicture.string(likeSVG,
+                  height:widget.widthSVG,
+                  width: widget.heightSVG,
+                ),
               )
                   : MouseRegion(
                 onEnter: (event){
@@ -94,9 +110,11 @@ class _SaveButtonState extends State<SaveButton> {
                   });
                 },
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 4),
-                  child: SvgPicture.string(disLikeSVG,
+                  padding:  const EdgeInsets.symmetric(vertical: 2,horizontal: 0),
+                  child: SvgPicture.asset('assets/icons/disLike.svg',
                     color:  widget.isHover?kHoverColor:Colors.grey,
+                    height:widget.widthSVG,
+                    width: widget.heightSVG,
                   ),
                 ),
               );

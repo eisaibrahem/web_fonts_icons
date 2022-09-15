@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home_state.dart';
@@ -8,20 +9,23 @@ class HomeCubit extends Cubit<HomeStates> {
 
   static HomeCubit get(context) => BlocProvider.of(context);
 
+  TextEditingController textSearchController=TextEditingController();
 
+  String  categoryValue ='fonts';
+  void changeSearchCategoryValue(String? newValue) {
+    categoryValue =newValue!;
+    emit(ChangeSearchCategoryValueState());
+  }
+  String searchText='';
+  void searchForCategory(String value) {
+    searchText=value;
+    print(searchText);
+    emit(ChangeSearchCategoryValueState());
+  }
 
-
-  List<bool> selectedHistory = [true, false, false, false,];
-
-  void selectCategoryHistory(int n) {
-    for (int i = 0; i < 4; i++) {
-      if (i == n) {
-        selectedHistory[i] = true;
-      } else {
-        selectedHistory[i] = false;
-      }
-      emit(SelectedCategoryHistoryState());
-    }
+  void clearTextsearch() {
+    textSearchController.clear();
+    emit(ChangeSearchCategoryValueState());
   }
 
 

@@ -18,5 +18,7 @@ class ChangPaletOfColorPeckerState extends FontsStates {}
 
 class UseBackGraundPaletState extends FontsStates {}
 
+class ChangeAngelGradientState extends FontsStates {}
+
 
 
