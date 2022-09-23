@@ -53,12 +53,12 @@ ToolBarDetailsScreen({
                     cubit.changPaletToColorPalet();
                     cubit.useColorPecker();
                   },
-                  child: SvgPicture.asset("assets/icons/Group 5734.svg",
+                  child: SvgPicture.asset("assets/icons/text-color-logo.svg",
                     width: 40,),
                 ),
 
                 const SizedBox(
-                  width: 20,
+                  width: 15,
                 ),
                 isBackGround?InkWell(
                   onTap: (){
@@ -71,7 +71,7 @@ ToolBarDetailsScreen({
                   ),
                 ):Container(),
                  SizedBox(
-                  width:isBackGround? 20:0,
+                  width:isBackGround? 15:0,
                 ),
 
              ispopup?showGradientColorPiker(context,cubit):InkWell(
@@ -84,7 +84,53 @@ ToolBarDetailsScreen({
              ),
 
                 const SizedBox(
-                  width: 20,
+                  width: 10,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(3)
+                  ),
+                  child: Row(
+                    children: [
+                      InkWell(
+                        onTap:(){
+
+                        },
+                        child: const Icon(Icons.format_align_left_sharp,
+                        color: Colors.grey,
+                          size: 26,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap:(){
+
+                        },
+                        child: const Icon(Icons.format_align_center_sharp,
+                          color: Colors.grey,
+                          size: 26,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      InkWell(
+                        onTap:(){
+
+                        },
+                        child: const Icon(Icons.format_align_right_sharp,
+                          color: Colors.grey,
+                          size: 26,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  width: 10,
                 ),
                 IconButton(
                   tooltip: 'Reset',
@@ -93,7 +139,7 @@ ToolBarDetailsScreen({
                     cubit.resetColorAndSizeFontTest();
                   },
                   padding: EdgeInsets.zero,
-                  icon: SvgPicture.asset("assets/icons/Group 5730.svg",
+                  icon: SvgPicture.asset("assets/icons/reset-logo.svg",
                       width: 40),
                 ),
                 const Spacer(),
@@ -143,12 +189,12 @@ ToolBarDetailsScreen({
                       height: 17,
                       width: 17,
                     ),
-                    const SizedBox(width: 5,),
+                    const SizedBox(width: 3,),
                     Text(
                       'By : Mark Goldbridge',
                       style: TextStyle(
                         fontFamily: 'Microsoft Tai Le',
-                        fontSize: 16,
+                        fontSize: 14,
                         color: kTextColor,
                       ),
                     ),
@@ -165,7 +211,7 @@ ToolBarDetailsScreen({
   }
   Widget buildTextFieldForTestText(Size size, FontsCubit cubit) {
     return Container(
-      width: 250,
+      width: 240,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: kPrimaryColor,
@@ -229,7 +275,7 @@ ToolBarDetailsScreen({
   Widget buildSliderForChangeTextSize(FontsCubit cubit, Size size) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
-      width: size.width * 0.17,
+      width: size.width * 0.16,
       decoration: BoxDecoration(
           color: kPrimaryColor, borderRadius: BorderRadius.circular(5)),
       child: Row(
@@ -261,6 +307,8 @@ ToolBarDetailsScreen({
             'A',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
+
+
         ],
       ),
     );
@@ -380,7 +428,7 @@ ToolBarDetailsScreen({
         );
       },
       pressType: PressType.singleClick,
-      child: SvgPicture.asset("assets/icons/Group 5734.svg",
+      child: SvgPicture.asset("assets/icons/text-color-logo.svg",
         width: 40,),
     );
   }

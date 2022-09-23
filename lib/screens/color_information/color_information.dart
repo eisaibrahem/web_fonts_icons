@@ -7,7 +7,7 @@ import 'package:portfolio/custom_widgets/custom_buttons/my_custom_button.dart';
 import 'package:portfolio/custom_widgets/tool_bar_icons.dart';
 import '../../custom_widgets/custom_app_bar.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
-import '../../custom_widgets/table_of_category.dart';
+import '../../custom_widgets/nav_bar_category.dart';
 import '../../shared/styles/themes.dart';
 
 class ColorInformation extends StatefulWidget {
@@ -28,13 +28,13 @@ class _ColorInformationState extends State<ColorInformation> {
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: PreferredSize(
-        preferredSize: Size(size.width, size.width*0.050),
+        preferredSize: Size(size.width,65),
         child: CustomAppBar(),
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const TableOfCategory(),
+          const NavBarCategory(),
           Expanded(
             child: ListView(
               controller: _scrollController,

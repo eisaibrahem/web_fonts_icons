@@ -20,3 +20,15 @@ class ChangeCheckedDownloadState extends IconsStates {}
 
 class ChangeWightIconState extends IconsStates {}
 
+//get icons name
+class LoadingIconsDateState extends IconsStates {}
+
+class SuccessGetIconsDateState extends IconsStates {}
+
+class ErrorIconsDateState extends IconsStates {}
+
+//get Icons links
+class ErrorGetSVGLinksState extends IconsStates {}
+
+class SuccessGetSVGLinksState extends IconsStates {}
+

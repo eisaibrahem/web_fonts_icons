@@ -1,5 +1,6 @@
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/custom_widgets/custom_buttons/save_button.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
 import 'package:portfolio/shared/styles/themes.dart';
@@ -7,15 +8,21 @@ import '../../custom_widgets/custom_buttons/my_custom_button.dart';
 import '../../custom_widgets/item_palette.dart';
 import '../../custom_widgets/my_custom_pupup_item.dart';
 
+
+
+
+
 class QuickViewScreen extends StatelessWidget {
  final  bool isIconsScreen;
  final  bool isPalettesScreen;
  final  bool isGradientScreen;
+ String ?link;
 
    QuickViewScreen({Key? key,
     required this.isIconsScreen,
     required this.isPalettesScreen,
     required this.isGradientScreen,
+     this.link
 
   }) : super(key: key);
 
@@ -142,9 +149,10 @@ class QuickViewScreen extends StatelessWidget {
             width:(isIconsScreen||isGradientScreen)?400:600,
             padding: const EdgeInsets.all(8),
             alignment: Alignment.center,
-            child:isIconsScreen? const Icon(
-              Icons.sports_baseball,
-              size: 150,
+            child:isIconsScreen? SvgPicture.string(
+              link!,
+              height: 150,
+              width: 150,
               color: Colors.black,
             ) :isPalettesScreen? buildListOFColorsPalette():
             isGradientScreen? Column(
@@ -498,3 +506,26 @@ const String cancelSVG =
   <path id="Line_36-2" data-name="Line 36" d="M16.169-.636-.636,16.168.891,17.7,17.7.891Z" transform="translate(0.636 0.636)"/>
 </svg>
 ''';
+
+void showQuickScreen({
+  required BuildContext context,
+  required bool isIconsScreen,
+  required bool isPalettesScreen,
+  required bool isGradientScreen,
+  String? link,
+}) {
+  showDialog(
+    context: context,
+    builder: (context) => Directionality(
+      textDirection: TextDirection.ltr,
+      child: AlertDialog(
+        backgroundColor: Colors.grey[100],
+        scrollable: true,
+        //actionsPadding:EdgeInsets.zero ,
+        contentPadding: const EdgeInsets.all(0),
+        //insetPadding: EdgeInsets.zero,
+        content:  QuickViewScreen(isIconsScreen:isIconsScreen,isPalettesScreen: isPalettesScreen,isGradientScreen:isGradientScreen,link:link),
+      ),
+    ),
+  );
+}

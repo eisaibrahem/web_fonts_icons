@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class GradientIcon extends StatelessWidget {
   GradientIcon({
@@ -7,16 +8,17 @@ class GradientIcon extends StatelessWidget {
     required this.gradient,
   });
 
-  final IconData icon;
+  final String icon;
   final double size;
   final Gradient gradient;
 
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
-      child: Icon(
+      child: SvgPicture.string(
         icon,
-        size: size,
+        height: 150,
+        width: 150,
         color: Colors.white,
       ),
       shaderCallback: (Rect bounds) {

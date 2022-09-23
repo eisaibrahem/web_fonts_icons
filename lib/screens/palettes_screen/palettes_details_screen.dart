@@ -10,7 +10,7 @@ import '../../custom_widgets/custom_buttons/my_button_hover_text.dart';
 import '../../custom_widgets/item_gragient_colors.dart';
 import '../../custom_widgets/item_palette.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
-import '../../custom_widgets/table_of_category.dart';
+import '../../custom_widgets/nav_bar_category.dart';
 import '../../shared/styles/themes.dart';
 import '../home_screen/cubit/home_cubit.dart';
 import '../home_screen/cubit/home_state.dart';
@@ -51,14 +51,14 @@ bool isHover=false;
     return Scaffold(
       backgroundColor: kPrimaryColor,
       appBar: PreferredSize(
-        preferredSize: Size(size.width, size.width*0.050),
+        preferredSize: Size(size.width,65),
         child: CustomAppBar(),
       ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TableOfCategory(),
+          const NavBarCategory(),
           BlocConsumer<PalettesCubit,PalettesStates>(
             listener: (context, state) {
 

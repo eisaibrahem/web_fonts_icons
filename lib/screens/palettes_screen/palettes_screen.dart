@@ -9,7 +9,7 @@ import '../../custom_widgets/custom_app_bar.dart';
 import '../../custom_widgets/custom_buttons/my_custom_category_item.dart';
 import '../../custom_widgets/item_palette.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
-import '../../custom_widgets/table_of_category.dart';
+import '../../custom_widgets/nav_bar_category.dart';
 import 'blocky_color.dart';
 import 'cubit/color_palettes_cubit.dart';
 import 'cubit/color_palettes_state.dart';
@@ -29,13 +29,13 @@ class PalettesScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: kPrimaryColor,
           appBar: PreferredSize(
-            preferredSize: Size(size.width, size.width*0.050),
+            preferredSize: Size(size.width,65),
             child: CustomAppBar(),
           ),
           body: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const TableOfCategory(),
+              const NavBarCategory(),
               Expanded(
                 child: ListView(
                   controller: _scrollController,

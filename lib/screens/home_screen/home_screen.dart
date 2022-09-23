@@ -11,7 +11,7 @@ import 'package:portfolio/screens/home_screen/cubit/home_state.dart';
 import 'package:portfolio/screens/icons_screen/icons_screen.dart';
 import 'package:sidebarx/sidebarx.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
-import '../../custom_widgets/table_of_category.dart';
+import '../../custom_widgets/nav_bar_category.dart';
 import '../../custom_widgets/custom_app_bar.dart';
 import '../palettes_screen/palettes_screen.dart';
 
@@ -31,13 +31,13 @@ class HomeScreen extends StatelessWidget {
           child: Scaffold(
             backgroundColor: Theme.of(context).primaryColor,
             appBar: PreferredSize(
-              preferredSize: Size(screenSize.width, screenSize.width*0.050),
+              preferredSize: Size(screenSize.width,65),
               child: CustomAppBar(),
             ),
             body: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const TableOfCategory(),
+                const NavBarCategory(),
 
                 Expanded(
                   child: PageView(

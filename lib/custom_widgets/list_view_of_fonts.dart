@@ -7,6 +7,7 @@ import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 import '../screens/fonts_screen/font_details_screen.dart';
 import '../screens/fonts_screen/fonts_screen.dart';
+import '../screens/quick_view_screen/quick_view_screen.dart';
 import '../shared/components.dart';
 import '../shared/styles/themes.dart';
 import 'custom_buttons/my_custom_button.dart';

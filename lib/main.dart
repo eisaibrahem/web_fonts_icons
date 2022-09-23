@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:portfolio/Layout/Layout_templet.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_cubit/fonts_cubit.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
 import 'package:portfolio/screens/gradients_screen/cubit/gradient_cubit.dart';
@@ -9,14 +10,23 @@ import 'package:portfolio/screens/home_screen/cubit/home_cubit.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_state.dart';
 import 'package:portfolio/screens/icons_screen/cubit/icons_cubit.dart';
 import 'package:portfolio/screens/palettes_screen/cubit/color_palettes_cubit.dart';
+import 'package:portfolio/shared/network/remote/dio_helper.dart';
+import 'package:portfolio/shared/routing/locator.dart';
+import 'package:portfolio/shared/routing/nav_services.dart';
+import 'package:portfolio/shared/routing/rout_name.dart';
+import 'package:portfolio/shared/routing/router.dart';
 import 'package:portfolio/shared/styles/themes.dart';
-import 'Layout/Layout_screen.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
-    SystemUiOverlay.bottom
-  ]);
+  setPathUrlStrategy();
+  DioHelper.init();
+  SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual, overlays: [
+      SystemUiOverlay.bottom
+      ]);
+  setupLocator();
   runApp(const MyApp());
 }
 
@@ -31,10 +41,15 @@ class MyApp extends StatelessWidget {
           create: (context)=>HomeCubit(),
         ),
         BlocProvider(
-          create: (context)=>FontsCubit()..getAlphabets(),
+          create: (context)=>FontsCubit()
+            ..getAlphabets()
+           // ..getFontsData()
+            ..changeCategoryScroll()
         ),
         BlocProvider(
-          create: (context)=>IconsCubit(),
+          create: (context)=>IconsCubit()
+            //..initialGetIcons()
+
         ),
         BlocProvider(
           create: (context)=>PalettesCubit(),
@@ -54,7 +69,11 @@ class MyApp extends StatelessWidget {
           darkTheme: darkMode(context),
           themeMode:ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          home:  FontsScreen(),
+          // builder: (context,child)=>  LayoutTemplate(child: child!),
+          // navigatorKey: locator<NavigationService>().navigatorKey,
+          // onGenerateRoute: generateRoute,
+          // initialRoute: FontsRoute,
+          home: FontsScreen(),
         );
       },
 

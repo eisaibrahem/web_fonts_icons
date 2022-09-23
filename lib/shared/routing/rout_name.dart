@@ -1,0 +1,11 @@
+const String  FontsRoute='/fonts';
+const String  FontsDetailsRoute='/fonts/fontDetails';
+const String  IconsRoute='/icons';
+const String  IconsDetailsRoute='/icons/iconsDetails';
+const String  PalettesRoute='/palettes';
+const String  GradientsRoute='/gradients';
+const String  ColorsInfoRoute='/colorInfo';
+const String  ColorsExtractorRoute='/colorExtractor';
+const String  PaletteFinderRoute='/paletteFinder';
+const String  SavedRoute='/saved';
+const String  ContactUsRoute='/contactUs';

@@ -88,7 +88,7 @@ class ToolBarIcons extends StatelessWidget {
                     cubit.resetColorAndSizeIconTest();
                   },
                   padding: EdgeInsets.zero,
-                  icon: SvgPicture.asset("assets/icons/Group 5730.svg",
+                  icon: SvgPicture.asset("assets/icons/reset-logo.svg",
                       width: 40),
                 ),
                 const Spacer(),

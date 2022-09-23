@@ -118,8 +118,8 @@ class _MyCustomButtonState extends State<MyCustomButton> {
                   child: SvgPicture.asset(
                     widget.assetSVG!,
                     color:isHover?kHoverColor:widget.svgColor??kTextColor,
-                    height: size.width*0.015,
-                    width: size.width*0.015 ,
+                    height: 20,
+                    width:  20,
                   ),
                 ):
                 (widget.icon!=null)? Icon(

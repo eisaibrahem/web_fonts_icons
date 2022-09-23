@@ -14,7 +14,7 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import '../../custom_widgets/custom_buttons/my_custom_button.dart';
 import '../../custom_widgets/custom_buttons/save_button.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
-import '../../custom_widgets/table_of_category.dart';
+import '../../custom_widgets/nav_bar_category.dart';
 import '../../custom_widgets/tool_bar_fonts.dart';
 import '../../shared/styles/themes.dart';
 import '../home_screen/cubit/home_cubit.dart';
@@ -39,14 +39,14 @@ class FontDetailsScreen extends StatelessWidget {
           child: Scaffold(
             backgroundColor: Theme.of(context).primaryColor,
             appBar: PreferredSize(
-              preferredSize: Size(size.width, size.width*0.050),
+              preferredSize: Size(size.width,65),
               child: CustomAppBar(),
             ),
             body: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TableOfCategory(),
+                const NavBarCategory(),
 
                 Expanded(
                   child:ListView(

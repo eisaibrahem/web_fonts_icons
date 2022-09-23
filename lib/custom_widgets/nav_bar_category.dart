@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
-import 'package:portfolio/screens/color_information/color_information.dart';
-import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
-import 'package:portfolio/screens/gradients_screen/gradients_screen.dart';
-import 'package:portfolio/screens/home_screen/home_screen.dart';
-import 'package:portfolio/screens/icons_screen/icons_screen.dart';
-import 'package:portfolio/screens/palettes_screen/palettes_screen.dart';
-import 'package:portfolio/shared/components.dart';
-
+import '../screens/color_information/color_information.dart';
 import '../screens/colors_extractor_screen/color_extractor_screen.dart';
 import '../screens/copy_right_screen/copy_right_screen.dart';
+import '../screens/fonts_screen/fonts_screen.dart';
+import '../screens/gradients_screen/gradients_screen.dart';
+import '../screens/icons_screen/icons_screen.dart';
 import '../screens/palettes_finder_screen/palettes_finder_screen.dart';
+import '../screens/palettes_screen/palettes_screen.dart';
+import '../shared/components.dart';
+import '../shared/routing/locator.dart';
+import '../shared/routing/nav_services.dart';
+import '../shared/routing/rout_name.dart';
 import '../shared/styles/themes.dart';
 
-class TableOfCategory extends StatelessWidget {
-  const TableOfCategory({Key? key}) : super(key: key);
+class NavBarCategory extends StatefulWidget {
+  const NavBarCategory({super.key});
 
+  @override
+  State<NavBarCategory> createState() => _NavBarCategoryState();
+}
 
+class _NavBarCategoryState extends State<NavBarCategory> {
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
     return Container(
@@ -28,97 +33,117 @@ class TableOfCategory extends StatelessWidget {
           children: [
             buildItemOfCategory(
                 icon: SvgPicture.asset(
-                  'assets/icons/Group 660.svg',
+                  'assets/icons/fonts-logo.svg',
                   height: 22,
                 ),
                 index:  0,
                 textTip:  'FONTS',
                 onTap: (){
-
-                    selectCategory(0);
+                setState(() {
+                selectCategory(0);
 
                   navigateTo(context, FontsScreen());
+                //locator<NavigationService>().navigateTo(FontsRoute);
+              });
+
                 }
 
             ),
             buildItemOfCategory(
                 icon:  SvgPicture.asset(
-                  "assets/icons/Group 659.svg",
+                  "assets/icons/icons-logo.svg",
                   height: 26,
                 ),
                 index:   1,
                 textTip:   'ICONS',
                 onTap: (){
-
+                  setState(() {
                     selectCategory(1);
 
-                  navigateTo(context, IconsScreen());
+                      navigateTo(context, IconsScreen());
+                   // locator<NavigationService>().navigateTo(IconsRoute);
+                  });
+
                 }
             ),
             buildItemOfCategory(
                 icon: SvgPicture.asset(
-                  "assets/icons/Group 664.svg",
+                  "assets/icons/color-palette-logo.svg",
                   height: 23,
                 ),
                 index:  2,
                 textTip:  'COLOR BALETTES',
                 onTap: (){
-
+                  setState(() {
                     selectCategory(2);
 
-                  navigateTo(context, PalettesScreen());
+                     navigateTo(context, PalettesScreen());
+                    // locator<NavigationService>().navigateTo(PalettesRoute);
+                  });
+
                 }
             ),
             buildItemOfCategory(
                 icon:   SvgPicture.asset(
-                  "assets/icons/Group 662.svg",
+                  "assets/icons/gradient-logo.svg",
                   height: 23,
                 ),
                 index:   3,
                 textTip:   'GRADIENTS',
                 onTap: (){
-
+                  setState(() {
                     selectCategory(3);
 
-                  navigateTo(context, GradientsScreen());
+                     navigateTo(context, GradientsScreen());
+                    //  locator<NavigationService>().navigateTo(GradientsRoute);
+                  });
+
                 }
 
             ),
             const Divider(
               endIndent: 10,
+              height: 1,
+              color: Colors.grey,
               indent: 10,
             ),
             buildItemOfCategory(
                 icon:   SvgPicture.asset(
-                  "assets/icons/Group 1374.svg",
+                  "assets/icons/color-information-logo.svg",
                   height: 26,
                 ),
                 index:  4,
                 textTip:  'COLOR INFORMATION',
                 onTap: (){
-
+                  setState(() {
                     selectCategory(4);
 
-                  navigateTo(context, ColorInformation());
+                    navigateTo(context, ColorInformation());
+                    //  locator<NavigationService>().navigateTo(ColorsInfoRoute);
+                  });
+
                 }
             ),
             buildItemOfCategory(
                 icon:   SvgPicture.asset(
-                  "assets/icons/Group 1370.svg",
+                  "assets/icons/color-extractor-logo.svg",
                   height: 26,
                 ),
                 index:  5,
                 textTip: 'COLORS EXTRACTOR',
                 onTap: (){
-
+                  setState(() {
                     selectCategory(5);
 
-                  navigateTo(context, ColorsExtractorScreen());
+                    navigateTo(context, ColorsExtractorScreen());
+                    //  locator<NavigationService>().navigateTo(ColorsExtractorRoute);
+                  });
+
                 }
             ),
             buildItemOfCategory(
                 icon:  SvgPicture.asset(
-                  "assets/icons/Group 5707.svg",
+                  "assets/icons/palette-finder-logo.svg",
                   height: 30,
                   alignment: Alignment.centerLeft,
 
@@ -126,21 +151,29 @@ class TableOfCategory extends StatelessWidget {
                 index:  6,
                 textTip:    'PALETTES FINDER',
                 onTap: (){
+                  setState(() {
                     selectCategory(6);
 
-                  navigateTo(context, PalettesFinderScreen());
+                    navigateTo(context, PalettesFinderScreen());
+                    //   locator<NavigationService>().navigateTo(PaletteFinderRoute);
+                  });
+
                 }
             ),
             buildItemOfCategory(
                 icon:  SvgPicture.asset(
-                  "assets/icons/Group 5706.svg",
+                  "assets/icons/copy-right-logo.svg",
                   height: 27,
                 ),
                 index:  7,
                 textTip:   'COPYRIGHT INFRINGEMENTS',
                 onTap: (){
+                  setState(() {
                     selectCategory(7);
-                  navigateTo(context, CopyRightScreen());
+                   navigateTo(context, CopyRightScreen());
+                    //   locator<NavigationService>().navigateTo(ContactUsRoute);
+                  });
+
                 }
             ),
           ],

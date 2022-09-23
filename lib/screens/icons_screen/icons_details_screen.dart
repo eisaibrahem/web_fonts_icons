@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:portfolio/custom_widgets/gradient_icon.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_cubit.dart';
@@ -15,14 +16,18 @@ import '../../custom_widgets/custom_buttons/my_custom_button.dart';
 import '../../custom_widgets/custom_buttons/save_button.dart';
 import '../../custom_widgets/tool_bar_icons.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
-import '../../custom_widgets/table_of_category.dart';
+import '../../custom_widgets/nav_bar_category.dart';
 import '../../shared/components.dart';
 import '../../shared/styles/themes.dart';
 import '../fonts_screen/fonts_screen.dart';
 import '../palettes_screen/blocky_color.dart';
+import '../quick_view_screen/quick_view_screen.dart';
 
 class IconsDetailsScreen extends StatelessWidget {
-   IconsDetailsScreen({Key? key}) : super(key: key);
+  String? link;
+   IconsDetailsScreen({
+    this.link,
+  });
   final ScrollController _scrollController =ScrollController();
   @override
   Widget build(BuildContext context) {
@@ -34,14 +39,14 @@ class IconsDetailsScreen extends StatelessWidget {
         return Scaffold(
             backgroundColor: Theme.of(context).primaryColor,
             appBar: PreferredSize(
-              preferredSize: Size(size.width, size.width * 0.050),
+              preferredSize: Size(size.width,65),
               child: CustomAppBar(),
             ),
             body: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const TableOfCategory(),
+                const NavBarCategory(),
                 Expanded(
                   child: ListView(
                     controller: _scrollController,
@@ -69,8 +74,9 @@ class IconsDetailsScreen extends StatelessWidget {
                                 children: [
                                   Column(
                                     children: [
+                                      const SizedBox(height: 30,),
                                     cubit.listOfTestIconColors.length>1? GradientIcon(
-                                      icon: Icons.sports_baseball,
+                                      icon:link!,
                                       size: 150,
                                       gradient: LinearGradient(
                                         colors: cubit.listOfTestIconColors,
@@ -79,9 +85,11 @@ class IconsDetailsScreen extends StatelessWidget {
                                       ),
                                     )
                                         :
-                                    Icon(
-                                      Icons.sports_baseball,
-                                      size: 150,
+                                    SvgPicture.string(
+                                      link!,
+                                      height: 150,
+                                      width: 150,
+
                                       color:cubit.listOfTestIconColors.length == 1
                                           ? cubit.listOfTestIconColors[0]
                                           : cubit.testColor,
@@ -360,7 +368,7 @@ class IconsDetailsScreen extends StatelessWidget {
                                                   pickerColor: cubit
                                                           .isBackGraundColor
                                                       ? cubit.backGraundColor
-                                                      : cubit.testColor,
+                                                      : cubit.testColor??kTextColor,
                                                   onColorChanged: (color) {
                                                     if (cubit
                                                         .isBackGraundColor) {
@@ -659,7 +667,9 @@ class IconsDetailsScreen extends StatelessWidget {
                                                 context: context,
                                                 isIconsScreen: true,
                                                 isPalettesScreen: false,
-                                                isGradientScreen: false);
+                                                isGradientScreen: false,
+
+                                            );
                                           },
                                           icon: Icons.remove_red_eye_outlined,
                                           iconSize: 26,

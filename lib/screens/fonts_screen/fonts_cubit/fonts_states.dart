@@ -20,5 +20,15 @@ class UseBackGraundPaletState extends FontsStates {}
 
 class ChangeAngelGradientState extends FontsStates {}
 
+class ChangeCategoryScrollState extends FontsStates {}
+
+
+//fonts
+class LoadingFontsDateState extends FontsStates {}
+
+class SuccessGetFontsDateState extends FontsStates {}
+
+class ShopErrorFontsDateState extends FontsStates {}
+
 
 

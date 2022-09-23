@@ -23,6 +23,7 @@ class CustomAppBar extends StatelessWidget {
         return Container(
           color: Colors.white,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               InkWell(
                 onTap: () {},
@@ -33,14 +34,15 @@ class CustomAppBar extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           top: 15.75, left: 25.65, bottom: 11.8, right: 17.6),
                       child: SvgPicture.asset(
-                        "assets/icons/Group 1028.svg",
+                        "assets/icons/site-logo.svg",
                       ),
                     ),
                     Text('Site name',
                         style: TextStyle(
                           fontFamily: 'Berlin Sans FB',
                           fontSize: size.width * 0.020,
-                        ))
+                        )
+                    )
                   ],
                 ),
               ),
@@ -54,11 +56,12 @@ class CustomAppBar extends StatelessWidget {
               MyCustomButton(
                   fontFamily: 'Arial Rounded MT',
                   paddingVertical: 5,
-                  paddingHorizontal: 10,
-                  textSize:  size.width*0.015  ,
-                  height: size.width*0.035,
+                  paddingHorizontal: 15,
+                  textSize:  20  ,
+                  height:45,
                   text: 'Saved',
                   assetSVG: "assets/icons/heart-svgrepo-com.svg",
+
                   onTap: () {
                      navigateTo(context, SavedScreen());
                   }),
@@ -67,10 +70,10 @@ class CustomAppBar extends StatelessWidget {
               ),
               MyCustomButton(
                   paddingVertical: 5,
-                  paddingHorizontal: 10,
                   fontFamily: 'Arial Rounded MT',
-                  textSize: size.width*0.015  ,
-                  height: size.width*0.035,
+                  paddingHorizontal: 15,
+                  textSize:  20  ,
+                  height:45,
                   text: 'Contact US',
                   assetSVG: "assets/icons/message-svgrepo-com.svg",
                   onTap: () {}),
@@ -83,7 +86,8 @@ class CustomAppBar extends StatelessWidget {
 
   Widget buildSearchBar(BuildContext context, Size size, HomeCubit cubit) {
     return Container(
-      width: size.width * 0.4,
+      width: size.width * 0.40,
+      height: 45,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         color: kPrimaryColor,

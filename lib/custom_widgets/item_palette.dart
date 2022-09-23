@@ -8,6 +8,7 @@ import 'package:portfolio/shared/components.dart';
 import 'package:portfolio/shared/styles/themes.dart';
 
 import '../screens/fonts_screen/fonts_screen.dart';
+import '../screens/quick_view_screen/quick_view_screen.dart';
 import 'my_custom_pupup_item.dart';
 
 class ItemColorsPalette extends StatefulWidget {
