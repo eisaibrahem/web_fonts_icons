@@ -28,6 +28,9 @@ class IconsCubit extends Cubit<IconsStates> {
     scrollController.addListener(() {
       if(scrollController.position.maxScrollExtent==scrollController.offset){
         fetchData();
+        if(searchListIconsLinks.isNotEmpty){
+
+        }
       }
     });
   }
@@ -35,7 +38,7 @@ class IconsCubit extends Cubit<IconsStates> {
     emit(LoadingIconsDateState());
     if (isLoading) return;
     isLoading = true;
-    const int limit = 20;
+    const int limit = 30;
     final url=Uri.parse('$baseURL/icons_paginated?limit=$limit&page=$page');
     try {
       final response = await http.get(url);
@@ -47,16 +50,43 @@ class IconsCubit extends Cubit<IconsStates> {
       // print('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
       // print(newItems[1]['svg'].toString());
       // print('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv');
-
+      emit(SuccessGetIconsDateState());
     } catch (e) {
       print('fffffffffffffffffhttpffffffffff');
       print(e.toString());
       print('fffffffffffffffffhttpffffffffff');
-
+      emit(ErrorIconsDateState());
     }
       page++;
       isLoading = false;
+
+  }
+
+  int pageSearch=1;
+  List searchListIconsLinks=[];
+  List searchListIconsSVG=[];
+  Future getSearchIcons(String ?searchText)async{
+    emit(LoadingSearchIconsState());
+    searchListIconsLinks=[];
+    searchListIconsSVG=[];
+    const int limit = 30;
+    final url=Uri.parse('$baseURL/search?name=$searchText&limit=$limit&page=$pageSearch');
+    try{
+      final response = await http.get(url);
+      final newItems=json.decode(response.body);
+      newItems.forEach((element){
+        searchListIconsSVG.add(element['svg']);
+        searchListIconsLinks.add('$baseURL/icon/${element['collection'].replaceAll(' ', '%20')}%5C${element['name'].replaceAll(' ', '%20')}');
+      });
       emit(SuccessGetIconsDateState());
+    }
+    catch (e) {
+      print('fffffffffffffffffsearchffffffffff');
+      print(e.toString());
+      print('fffffffffffffffffhttpffffffffff');
+      emit(ErrorIconsDateState());
+    }
+
   }
 
 

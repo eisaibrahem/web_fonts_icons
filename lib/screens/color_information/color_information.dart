@@ -22,6 +22,18 @@ class _ColorInformationState extends State<ColorInformation> {
   Color testColor =kPrimaryColor;
   final TextEditingController hexTextInputController =TextEditingController();
   String ?typeColorValue ='HEX';
+
+  @override
+  void initState() {
+    super.initState();
+//here you can init your variables
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      //All dynamic operations that will impact on graphics
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     Size size =MediaQuery.of(context).size;
@@ -34,7 +46,7 @@ class _ColorInformationState extends State<ColorInformation> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const NavBarCategory(),
+          const NavBarCategory(index:4),
           Expanded(
             child: ListView(
               controller: _scrollController,

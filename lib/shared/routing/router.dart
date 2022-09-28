@@ -10,9 +10,11 @@ import 'package:portfolio/screens/palettes_finder_screen/palettes_finder_screen.
 import 'package:portfolio/shared/routing/rout_name.dart';
 
 import '../../screens/fonts_screen/font_details_screen.dart';
+import '../../screens/gradients_screen/gradient_details_screen.dart';
 import '../../screens/gradients_screen/gradients_screen.dart';
 import '../../screens/icons_screen/icons_details_screen.dart';
 import '../../screens/icons_screen/icons_screen.dart';
+import '../../screens/palettes_screen/palettes_details_screen.dart';
 import '../../screens/palettes_screen/palettes_screen.dart';
 import '../../screens/saved_screen/saved_screen.dart';
 import '../../shared/routing/string_extentions.dart';
@@ -34,8 +36,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(IconsDetailsScreen(), settings);
     case PalettesRoute:
       return _getPageRoute(PalettesScreen(), settings);
+      case PalettesDetailsRoute:
+      return _getPageRoute(PalettesDetailsScreen(), settings);
     case GradientsRoute:
       return _getPageRoute(GradientsScreen(), settings);
+      case GradientsDetailsRoute:
+      return _getPageRoute(GradientDetailsScreen(), settings);
     case ColorsInfoRoute:
       return _getPageRoute(ColorInformation(), settings);
     case ColorsExtractorRoute:
@@ -64,8 +70,7 @@ class _FadeRoute extends PageRouteBuilder {
           pageBuilder: (
             BuildContext context,
             Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) => child,
+            Animation<double> secondaryAnimation,) => child,
           transitionsBuilder: (
             BuildContext context,
             Animation<double> animation,

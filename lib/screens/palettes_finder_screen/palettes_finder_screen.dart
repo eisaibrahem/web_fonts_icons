@@ -18,11 +18,24 @@ class PalettesFinderScreen extends StatefulWidget {
   State<PalettesFinderScreen> createState() => _PalettesFinderScreenState();
 }
 
+
 class _PalettesFinderScreenState extends State<PalettesFinderScreen> {
   final ScrollController _scrollController =ScrollController();
   Color testColor =HexColor('581499');
   final TextEditingController hexTextInputController =TextEditingController();
   String ?typeColorValue ='HEX';
+
+  int numberOfPalletes=0;
+  @override
+  void initState() {
+    super.initState();
+//here you can init your variables
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      numberOfPalletes=10;
+      //All dynamic operations that will impact on graphics
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +49,7 @@ class _PalettesFinderScreenState extends State<PalettesFinderScreen> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const NavBarCategory(),
+          const NavBarCategory(index:6),
           Expanded(
             child: ListView(
               controller: _scrollController,
@@ -193,30 +206,8 @@ class _PalettesFinderScreenState extends State<PalettesFinderScreen> {
                       const SizedBox(height: 10,),
                   ]
                 ),
-
                 ),
-                Container(
-                  width: size.width,
-                  margin: const EdgeInsets.symmetric(horizontal: 6),
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
-                    color: Colors.white,
-                  ),
-                  child: GridView.count(
-                    crossAxisSpacing: 12,
-                    padding: const EdgeInsets.all(5),
-                    shrinkWrap: true,
-                    crossAxisCount: 2,
-                    childAspectRatio: 2.7,
-                    primary:true ,
-                    scrollDirection: Axis.vertical,
-                    children: List.generate(60, (index){
-                      return ItemColorsPalette();
-                    }
-                    ),
-                  ),
-                )
+                ItemColorsPalette(),
               ],
             ),
           ),

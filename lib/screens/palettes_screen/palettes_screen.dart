@@ -35,7 +35,7 @@ class PalettesScreen extends StatelessWidget {
           body: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const NavBarCategory(),
+              const NavBarCategory(index:2),
               Expanded(
                 child: ListView(
                   controller: _scrollController,
@@ -279,6 +279,9 @@ class PalettesScreen extends StatelessWidget {
                             height: 60,
                             padding:const EdgeInsets.symmetric(horizontal: 10,vertical: 10) ,
                             width: size.width*0.1,
+                            constraints: BoxConstraints(
+                              maxWidth: 300
+                            ),
                             decoration: BoxDecoration(
                                 color: kPrimaryColor,
                                 borderRadius:BorderRadius.circular(1)
@@ -317,27 +320,7 @@ class PalettesScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.all(5),
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(3),
-                        color: Colors.white,
-                      ),
-                      child: GridView.count(
-                        crossAxisSpacing: 12,
-                        padding: const EdgeInsets.all(5),
-                        shrinkWrap: true,
-                        crossAxisCount: 2,
-                        childAspectRatio: 2.7,
-                        primary:true ,
-                        scrollDirection: Axis.vertical,
-                        children: List.generate(60, (index){
-                          return ItemColorsPalette();
-                        }
-                        ),
-                      ),
-                    ),
+                    ItemColorsPalette(),
                   ],
                 ),
               ),

@@ -151,6 +151,11 @@ ScrollController scrollFontsCategoryController=ScrollController();
     });
 
   }
+  Alignment testAlignment=Alignment.center;
+  void changeAlignment({required Alignment alignment}) {
+    testAlignment=alignment;
+    emit(ChangeAlignmentTestTextState());
+  }
 
 
 

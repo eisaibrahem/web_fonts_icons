@@ -140,17 +140,13 @@ Widget myDivider() => Padding(
     );
 
 void navigateTo(BuildContext context,Widget widget) =>
-    Navigator.pushAndRemoveUntil(
+    Navigator.pushReplacement(
       context,
       PageTransition(
         type: PageTransitionType.fade,
         child : widget,
-        duration: const Duration(milliseconds: 500),
-
+        duration: const Duration(milliseconds: 200),
       ),
-          (route) {
-        return false;
-      },
     );
 
 void navigateAndFinish(

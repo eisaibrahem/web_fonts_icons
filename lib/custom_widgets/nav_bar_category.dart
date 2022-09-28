@@ -16,7 +16,10 @@ import '../shared/routing/rout_name.dart';
 import '../shared/styles/themes.dart';
 
 class NavBarCategory extends StatefulWidget {
-  const NavBarCategory({super.key});
+ final int index;
+  const NavBarCategory({
+    required  this.index,
+  });
 
   @override
   State<NavBarCategory> createState() => _NavBarCategoryState();
@@ -40,10 +43,10 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:  'FONTS',
                 onTap: (){
                 setState(() {
-                selectCategory(0);
-
-                  navigateTo(context, FontsScreen());
-                //locator<NavigationService>().navigateTo(FontsRoute);
+               // selectCategory(0);
+                //Navigator.pushNamed(context, FontsRoute);
+                 // navigateTo(context, FontsScreen());
+                locator<NavigationService>().navigateTo(FontsRoute);
               });
 
                 }
@@ -58,10 +61,10 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:   'ICONS',
                 onTap: (){
                   setState(() {
-                    selectCategory(1);
-
-                      navigateTo(context, IconsScreen());
-                   // locator<NavigationService>().navigateTo(IconsRoute);
+                   // selectCategory(1);
+                    //Navigator.pushNamed(context, IconsRoute);
+                      //navigateTo(context, IconsScreen());
+                    locator<NavigationService>().navigateTo(IconsRoute);
                   });
 
                 }
@@ -75,10 +78,10 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:  'COLOR BALETTES',
                 onTap: (){
                   setState(() {
-                    selectCategory(2);
-
-                     navigateTo(context, PalettesScreen());
-                    // locator<NavigationService>().navigateTo(PalettesRoute);
+                   // selectCategory(2);
+                    //Navigator.pushNamed(context, PalettesRoute);
+                     //navigateTo(context, PalettesScreen());
+                     locator<NavigationService>().navigateTo(PalettesRoute);
                   });
 
                 }
@@ -92,23 +95,22 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:   'GRADIENTS',
                 onTap: (){
                   setState(() {
-                    selectCategory(3);
-
-                     navigateTo(context, GradientsScreen());
-                    //  locator<NavigationService>().navigateTo(GradientsRoute);
+                   // selectCategory(3);
+                    //Navigator.pushNamed(context,GradientsRoute);
+                     //navigateTo(context, GradientsScreen());
+                      locator<NavigationService>().navigateTo(GradientsRoute);
                   });
 
                 }
 
             ),
-            const Divider(
-              endIndent: 10,
-              height: 1,
-              color: Colors.grey,
-              indent: 10,
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              height: 0.5,
+              color: Colors.grey[300],
             ),
             buildItemOfCategory(
-                icon:   SvgPicture.asset(
+                icon:SvgPicture.asset(
                   "assets/icons/color-information-logo.svg",
                   height: 26,
                 ),
@@ -116,10 +118,10 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:  'COLOR INFORMATION',
                 onTap: (){
                   setState(() {
-                    selectCategory(4);
-
-                    navigateTo(context, ColorInformation());
-                    //  locator<NavigationService>().navigateTo(ColorsInfoRoute);
+                   // selectCategory(4);
+                   // Navigator.pushNamed(context, ColorsInfoRoute);
+                    //navigateTo(context, ColorInformation());
+                      locator<NavigationService>().navigateTo(ColorsInfoRoute);
                   });
 
                 }
@@ -133,10 +135,10 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip: 'COLORS EXTRACTOR',
                 onTap: (){
                   setState(() {
-                    selectCategory(5);
-
-                    navigateTo(context, ColorsExtractorScreen());
-                    //  locator<NavigationService>().navigateTo(ColorsExtractorRoute);
+                   // selectCategory(5);
+                   // Navigator.pushNamed(context, ColorsExtractorRoute);
+                   // navigateTo(context, ColorsExtractorScreen());
+                     locator<NavigationService>().navigateTo(ColorsExtractorRoute);
                   });
 
                 }
@@ -152,10 +154,11 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:    'PALETTES FINDER',
                 onTap: (){
                   setState(() {
-                    selectCategory(6);
+                   // selectCategory(6);
 
-                    navigateTo(context, PalettesFinderScreen());
-                    //   locator<NavigationService>().navigateTo(PaletteFinderRoute);
+                   // navigateTo(context, PalettesFinderScreen());
+                    //Navigator.pushNamed(context, PaletteFinderRoute);
+                       locator<NavigationService>().navigateTo(PaletteFinderRoute);
                   });
 
                 }
@@ -169,9 +172,10 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 textTip:   'COPYRIGHT INFRINGEMENTS',
                 onTap: (){
                   setState(() {
-                    selectCategory(7);
-                   navigateTo(context, CopyRightScreen());
-                    //   locator<NavigationService>().navigateTo(ContactUsRoute);
+                  //  selectCategory(7);
+                  // navigateTo(context, CopyRightScreen());
+                   //Navigator.pushNamed(context, ContactUsRoute);
+                       locator<NavigationService>().navigateTo(ContactUsRoute);
                   });
 
                 }
@@ -182,8 +186,7 @@ class _NavBarCategoryState extends State<NavBarCategory> {
 
   }
 
-  Widget buildItemOfCategory(
-      {
+  Widget buildItemOfCategory({
         Widget? icon,
         required int index,
         String? textTip,
@@ -215,13 +218,13 @@ class _NavBarCategoryState extends State<NavBarCategory> {
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           height: 42.29,
-          color: selected[index]
+          color: widget.index==index
               ? kPrimaryColor
               : Colors.white,
           margin: const EdgeInsets.only(top: 5.3, bottom: 5.3),
           child: Row(
             children: [
-              selected[index]
+              widget.index==index
                   ? Container(
                 height: 50,
                 width: 5,
@@ -231,8 +234,8 @@ class _NavBarCategoryState extends State<NavBarCategory> {
                 ),
               )
                   : Container(),
-              index==6?SizedBox(width: selected[index] ? 18:23,):  SizedBox(
-                width: selected[index] ? 20: 25,
+              index==6?SizedBox(width: widget.index==index ? 18:23,):  SizedBox(
+                width: widget.index==index ? 20: 25,
               ),
               Container(
                 height: 50,
@@ -247,13 +250,13 @@ class _NavBarCategoryState extends State<NavBarCategory> {
   }
 }
 
-List<bool> selected = [true, false, false, false, false, false, false, false,];
-void selectCategory(int n) {
-  for (int i = 0; i < 8; i++) {
-    if (i == n) {
-        selected[i] = true;
-    } else {
-        selected[i] = false;
-    }
-  }
-}
+// List<bool> selected = [true, false, false, false, false, false, false, false,];
+// void selectCategory(int n) {
+//   for (int i = 0; i < 8; i++) {
+//     if (i == n) {
+//         selected[i] = true;
+//     } else {
+//         selected[i] = false;
+//     }
+//   }
+// }

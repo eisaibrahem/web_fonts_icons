@@ -61,7 +61,7 @@ dependencies:
   url_launcher: ^6.1.5
   get_it:
   animated_text_kit:
-
+  conditional_builder_null_safety:
 
 
 

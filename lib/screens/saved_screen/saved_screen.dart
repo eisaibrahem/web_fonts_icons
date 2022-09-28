@@ -39,7 +39,7 @@ class _SavedScreenState extends State<SavedScreen> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const NavBarCategory(),
+          const NavBarCategory(index: 10),
           Expanded(
             child: ListView(
               controller: _scrollController,
@@ -306,7 +306,7 @@ class _SavedScreenState extends State<SavedScreen> {
                     childAspectRatio: 1.025,
                     scrollDirection: Axis.vertical,
                     children: List.generate(60, (index){
-                      return ItemGragientColors();
+                      return ItemsGragientGridView();
                     }
                     ),
                   )

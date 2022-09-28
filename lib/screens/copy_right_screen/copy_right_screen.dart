@@ -25,7 +25,7 @@ class CopyRightScreen extends StatelessWidget {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const NavBarCategory(),
+          const NavBarCategory(index:7),
           Expanded(
             child: ListView(
               controller: _scrollController,

@@ -35,7 +35,7 @@ class FontsScreen extends StatelessWidget {
           body: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const NavBarCategory(),
+              const NavBarCategory(index:0),
               Expanded(
                 child: ListView(
                   controller: ScrollController(),
@@ -52,36 +52,33 @@ class FontsScreen extends StatelessWidget {
                           children: [
                             Container(
                               margin: const EdgeInsets.all(5),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: List.generate(26, (index) {
-                                    return InkWell(
-                                      onTap: () {},
-                                      child: Container(
-                                        alignment: Alignment.center,
-                                        width: 30,
-                                        height: 30,
-                                        padding: const EdgeInsets.all(5),
-                                        margin: const EdgeInsets.all(5),
-                                        decoration: BoxDecoration(
-                                          color: Theme.of(context).primaryColor,
-                                          borderRadius: BorderRadius.circular(3),
-                                        ),
-                                        child: Text(
-                                          cubit.alphabets[index],
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                              fontFamily: 'Segoe UI',
-                                              fontSize: 20,
-                                              height: 1.1,
-                                              color: kTextColor),
-                                        ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: List.generate(26, (index) {
+                                  return InkWell(
+                                    onTap: () {},
+                                    child: Container(
+                                      alignment: Alignment.center,
+                                      width: 30,
+                                      height: 30,
+                                      padding: const EdgeInsets.all(2),
+                                      margin: const EdgeInsets.all(1),
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).primaryColor,
+                                        borderRadius: BorderRadius.circular(3),
                                       ),
-                                    );
-                                  }),
-                                ),
+                                      child: Text(
+                                        cubit.alphabets[index],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontFamily: 'Segoe UI',
+                                            fontSize: 20,
+                                            height: 1.1,
+                                            color: kTextColor),
+                                      ),
+                                    ),
+                                  );
+                                }),
                               ),
                             ),
                             Expanded(
@@ -244,8 +241,9 @@ class FontsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    ToolBarDetailsScreen(isBackGround:false),
+                    ToolBarDetailsScreen(isBackGround:false,isAlignmentEdit:false),
                     Card(
+
                       margin: const EdgeInsets.all(6),
                       color: Colors.white,
                       elevation: 0.5,

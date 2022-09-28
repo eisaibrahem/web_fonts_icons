@@ -35,13 +35,13 @@ class GradientsScreen extends StatelessWidget {
         body: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const NavBarCategory(),
+            const NavBarCategory(index:3),
             Expanded(
               child: ListView(
                 controller: _scrollController,
                 children: [
                   Container(
-                    height: 130,
+                    height:120,
                     margin: const EdgeInsets.all(5),
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
@@ -51,14 +51,17 @@ class GradientsScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Colors',
-                          style: TextStyle(
-                            color: kTextColor,
-                            fontSize: 28,
-                            fontWeight: FontWeight.bold,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text('Colors',
+                            style: TextStyle(
+                              color: kTextColor,
+                              fontSize: 26,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 10,),
+                         SizedBox(height: 10),
                         MultipleChoiceBlockPicker(
                           onColorsChanged: (List<Color> value) {
                             cubit.changeListOfPaletteColors(value);
@@ -70,14 +73,13 @@ class GradientsScreen extends StatelessWidget {
                             Orientation orientation = MediaQuery.of(context).orientation;
                             return Container(
                               width:size.width,
-                              height:65,
+                              height:60,
                               padding: const EdgeInsets.all(5),
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(3)
                               ),
                               child: GridView.count(
-                                shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 crossAxisCount: 1,
                                 crossAxisSpacing: 3,
@@ -103,8 +105,7 @@ class GradientsScreen extends StatelessWidget {
                                     opacity: isCurrentColor ? 1 : 0,
                                     child: Icon(
                                       Icons.done,
-                                      size: 28,
-
+                                      size: 20,
                                       color: useWhiteForeground(color) ? Colors.white : Colors.black,
                                     ),
                                   ),
@@ -189,27 +190,8 @@ class GradientsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.all(5),
-                    padding: const EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(3),
-                      color: Colors.white,
-                    ),
-                    child: GridView.count(
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 1,
-                      padding: const EdgeInsets.all(5),
-                      shrinkWrap: true,
-                      crossAxisCount: 4,
-                      childAspectRatio: 1.025,
-                      scrollDirection: Axis.vertical,
-                      children: List.generate(60, (index){
-                        return ItemGragientColors();
-                      }
-                      ),
-                    ),
-                  ),
+                  ItemsGragientGridView(),
+
 
                 ],
               ),

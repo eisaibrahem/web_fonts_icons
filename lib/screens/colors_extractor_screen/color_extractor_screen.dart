@@ -20,11 +20,15 @@ class ColorsExtractorScreen extends StatefulWidget {
 class _ColorsExtractorScreenState extends State<ColorsExtractorScreen> {
   final toast=FToast();
   final ScrollController _scrollController =ScrollController();
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     toast.init(context);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      //All dynamic operations that will impact on graphics
+    });
   }
 
   void showBottomToast(){
@@ -48,7 +52,7 @@ class _ColorsExtractorScreenState extends State<ColorsExtractorScreen> {
       body: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const NavBarCategory(),
+          const NavBarCategory(index:5),
           Expanded(
             child: ListView(
               controller: _scrollController,

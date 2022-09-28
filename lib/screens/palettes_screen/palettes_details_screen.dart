@@ -58,7 +58,7 @@ bool isHover=false;
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const NavBarCategory(),
+          const NavBarCategory(index: 2),
           BlocConsumer<PalettesCubit,PalettesStates>(
             listener: (context, state) {
 
@@ -69,7 +69,6 @@ bool isHover=false;
                 child: Container(
                   alignment: Alignment.center,
                   width:size.width,
-                  padding: const EdgeInsets.all(10),
                   margin: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4),
@@ -231,7 +230,7 @@ bool isHover=false;
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 2.0,vertical: 10),
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0,vertical: 10),
                         child: Text('Explore Another Colors Palette',
                           style: TextStyle(
                             color: kTextColor,
@@ -241,19 +240,7 @@ bool isHover=false;
                           ),
                         ),
                       ),
-                      GridView.count(
-                        crossAxisSpacing: 12,
-                        padding: const EdgeInsets.all(5),
-                        shrinkWrap: true,
-                        crossAxisCount: 2,
-                        childAspectRatio: 2.7,
-                        primary:true ,
-                        scrollDirection: Axis.vertical,
-                        children: List.generate(60, (index){
-                          return ItemColorsPalette();
-                        }
-                        ),
-                      ),
+                      ItemColorsPalette(),
                     ],
                   ),
                 ),

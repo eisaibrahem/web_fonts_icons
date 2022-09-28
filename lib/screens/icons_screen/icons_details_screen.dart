@@ -5,6 +5,7 @@ import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:portfolio/custom_widgets/gradient_icon.dart';
+import 'package:portfolio/custom_widgets/item_icons.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_cubit.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_state.dart';
 import 'package:portfolio/screens/icons_screen/cubit/icons_cubit.dart';
@@ -46,7 +47,7 @@ class IconsDetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const NavBarCategory(),
+                const NavBarCategory(index: 1),
                 Expanded(
                   child: ListView(
                     controller: _scrollController,
@@ -69,33 +70,40 @@ class IconsDetailsScreen extends StatelessWidget {
                               margin: const EdgeInsets.all(3),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(3),
-                                  color: cubit.backGraundColor),
+                                  color:kPrimaryColor,
+                              ),
                               child: Row(
                                 children: [
                                   Column(
                                     children: [
-                                      const SizedBox(height: 30,),
-                                    cubit.listOfTestIconColors.length>1? GradientIcon(
-                                      icon:link!,
-                                      size: 150,
-                                      gradient: LinearGradient(
-                                        colors: cubit.listOfTestIconColors,
-                                        begin: Alignment(-1.0, cubit.angelGradient),
-                                        end: Alignment(cubit.angelGradient, 1),
-                                      ),
-                                    )
-                                        :
-                                    SvgPicture.string(
-                                      link!,
-                                      height: 150,
-                                      width: 150,
+                                    Expanded(
+                                      child: Container(
+                                        width: 400,
+                                        color:cubit.backGraundColor,
+                                        margin: EdgeInsets.all(6),
+                                        padding: EdgeInsets.all(20),
+                                        alignment:Alignment.center,
+                                        child: cubit.listOfTestIconColors.length>1? GradientIcon(
+                                          icon:link!,
+                                          size: 150,
+                                          gradient: LinearGradient(
+                                            colors: cubit.listOfTestIconColors,
+                                            begin: Alignment(-1.0, cubit.angelGradient),
+                                            end: Alignment(cubit.angelGradient, 1),
+                                          ),
+                                        )
+                                            :
+                                        SvgPicture.string(
+                                          link!,
+                                          height: 150,
+                                          width: 150,
 
-                                      color:cubit.listOfTestIconColors.length == 1
-                                          ? cubit.listOfTestIconColors[0]
-                                          : cubit.testColor,
-                                    )
-                                      ,
-                                      const Spacer(),
+                                          color:cubit.listOfTestIconColors.length == 1
+                                              ? cubit.listOfTestIconColors[0]
+                                              : cubit.testColor,
+                                        ),
+                                      ),
+                                    ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -608,95 +616,11 @@ class IconsDetailsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                        width: size.width,
-                        padding: const EdgeInsets.all(10),
-                        margin: const EdgeInsets.symmetric(horizontal: 6),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(3)),
-                        child: GridView.count(
-                          shrinkWrap: true,
-                          crossAxisCount: 5,
-                          crossAxisSpacing: 5.0,
-                          mainAxisSpacing: 5.0,
-                          scrollDirection: Axis.vertical,
-                          children: List.generate(30, (index) {
-                            return Container(
-                              height: 200,
-                              width: 60,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(3),
-                                color: kPrimaryColor,
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InkWell(
-                                    onTap: () {
-                                      navigateTo(
-                                          context, IconsDetailsScreen());
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Icon(
-                                        Icons.sports_baseball,
-                                        color: cubit.testColor,
-                                        size: 100,
-                                      ),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 5, vertical: 5),
-                                    height: 45,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SaveButton(
-                                          color: Colors.white,
-                                          borderRadius: 2,
-                                          height: 40,
-                                          width: 55,
-                                        ),
-                                        MyCustomButton(
-                                          onTap: () {
-                                            showQuickScreen(
-                                                context: context,
-                                                isIconsScreen: true,
-                                                isPalettesScreen: false,
-                                                isGradientScreen: false,
-
-                                            );
-                                          },
-                                          icon: Icons.remove_red_eye_outlined,
-                                          iconSize: 26,
-                                          color: Colors.white,
-                                          borderRadius: 2,
-                                          toolTip: 'Quick View',
-                                          height: 40,
-                                          width: 55,
-                                        ),
-                                        MyCustomButton(
-                                          icon: Icons.download,
-                                          toolTip: 'Download SVG',
-                                          iconSize: 26,
-                                          color: Colors.white,
-                                          borderRadius: 2,
-                                          height: 40,
-                                          width: 55,
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            );
-                          }),
-                        ),
-                      )
+                      ItemIcons(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 6),
+                        child: LinearProgressIndicator(color: Colors.grey[300],backgroundColor: Colors.grey),
+                      ),
                     ],
                   ),
                 ),

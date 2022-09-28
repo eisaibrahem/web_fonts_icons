@@ -46,7 +46,7 @@ class FontDetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const NavBarCategory(),
+                const NavBarCategory(index: 0),
 
                 Expanded(
                   child:ListView(
@@ -78,7 +78,7 @@ class FontDetailsScreen extends StatelessWidget {
                                           width:size.width,
                                           height: 230,
                                           color: cubit.backGraundColor,
-                                          alignment: Alignment.centerLeft,
+                                          alignment: cubit.testAlignment,
                                           child:  (cubit.listOfTestTextColors.length > 1)
                                               ?
                                           GradientText(

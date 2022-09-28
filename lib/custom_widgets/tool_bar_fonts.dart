@@ -15,11 +15,13 @@ class ToolBarDetailsScreen extends StatelessWidget {
 final bool isPupular;
 final bool ispopup;
 final bool isBackGround;
+final bool isAlignmentEdit;
 
 ToolBarDetailsScreen({
   this.isPupular=true,
   this.ispopup=true,
   this.isBackGround=true,
+  this.isAlignmentEdit=true,
 });
 
 
@@ -82,11 +84,10 @@ ToolBarDetailsScreen({
                    "assets/icons/gradient-svgrepo-com(1).svg",
                    width: 40),
              ),
-
-                const SizedBox(
-                  width: 10,
+                 SizedBox(
+                  width:isAlignmentEdit? 10:0,
                 ),
-                Container(
+                isAlignmentEdit?Container(
                   decoration: BoxDecoration(
                     color: kPrimaryColor,
                     borderRadius: BorderRadius.circular(3)
@@ -95,7 +96,7 @@ ToolBarDetailsScreen({
                     children: [
                       InkWell(
                         onTap:(){
-
+                          cubit.changeAlignment(alignment:Alignment.centerLeft);
                         },
                         child: const Icon(Icons.format_align_left_sharp,
                         color: Colors.grey,
@@ -107,7 +108,7 @@ ToolBarDetailsScreen({
                       ),
                       InkWell(
                         onTap:(){
-
+                          cubit.changeAlignment(alignment:Alignment.center);
                         },
                         child: const Icon(Icons.format_align_center_sharp,
                           color: Colors.grey,
@@ -119,7 +120,7 @@ ToolBarDetailsScreen({
                       ),
                       InkWell(
                         onTap:(){
-
+                          cubit.changeAlignment(alignment:Alignment.centerRight);
                         },
                         child: const Icon(Icons.format_align_right_sharp,
                           color: Colors.grey,
@@ -128,7 +129,7 @@ ToolBarDetailsScreen({
                       ),
                     ],
                   ),
-                ),
+                ):Container(),
                 const SizedBox(
                   width: 10,
                 ),
@@ -148,6 +149,9 @@ ToolBarDetailsScreen({
                   height: 60,
                   padding:const EdgeInsets.symmetric(horizontal: 10,vertical: 10) ,
                   width: size.width*0.1,
+                    constraints: BoxConstraints(
+                        maxWidth: 300
+                    ),
                   decoration: BoxDecoration(
                       color: kPrimaryColor,
                       borderRadius:BorderRadius.circular(1)
@@ -211,7 +215,10 @@ ToolBarDetailsScreen({
   }
   Widget buildTextFieldForTestText(Size size, FontsCubit cubit) {
     return Container(
-      width: 240,
+      width: size.width * 0.16,
+      constraints: BoxConstraints(
+          maxWidth: 380
+      ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         color: kPrimaryColor,
@@ -244,20 +251,18 @@ ToolBarDetailsScreen({
               children: [
                 Container(
                   width: 0.5,
-                  height: size.width * 0.015,
+                  height: 34,
                   color: Colors.grey,
                 ),
+                SizedBox(width: 5,),
                 InkWell(
                   onTap: () {
                     cubit.clearTextTest();
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Icon(
-                      Icons.clear,
-                      color:FontsScreen.testFontController.text==''? Colors.grey:Colors.black,
-                      size: size.width * 0.015,
-                    ),
+                  child: Icon(
+                    Icons.clear,
+                    color:FontsScreen.testFontController.text==''? Colors.grey:Colors.black,
+                    size: 24,
                   ),
                 ),
               ],
@@ -276,17 +281,20 @@ ToolBarDetailsScreen({
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 10),
       width: size.width * 0.16,
+        constraints: BoxConstraints(
+            maxWidth: 380
+        ),
       decoration: BoxDecoration(
           color: kPrimaryColor, borderRadius: BorderRadius.circular(5)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const SizedBox(width: 5,),
           const Text(
             'A',
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
-          SizedBox(
-            width: size.width * 0.14,
+          Expanded(
             child: Slider(
               value: cubit.fontSizeValueTest,
               activeColor: Colors.blue[100],
@@ -307,7 +315,7 @@ ToolBarDetailsScreen({
             'A',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
-
+         const SizedBox(width: 5,),
 
         ],
       ),

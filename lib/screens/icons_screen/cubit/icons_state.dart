@@ -32,3 +32,5 @@ class ErrorGetSVGLinksState extends IconsStates {}
 
 class SuccessGetSVGLinksState extends IconsStates {}
 
+//search icons
+class LoadingSearchIconsState extends IconsStates {}

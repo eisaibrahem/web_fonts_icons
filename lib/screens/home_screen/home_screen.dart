@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
             body: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const NavBarCategory(),
+                const NavBarCategory(index: 25),
 
                 Expanded(
                   child: PageView(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_cubit/fonts_cubit.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_cubit/fonts_states.dart';
 import 'package:simple_gradient_text/simple_gradient_text.dart';
@@ -39,6 +40,15 @@ class _ListViewOfFontsState extends State<ListViewOfFonts> {
 
           child: GestureDetector(
             onTap: (){
+              // Navigator.push(
+              //   context,
+              //   PageTransition(
+              //       type: PageTransitionType.fade,
+              //       alignment: Alignment.center,
+              //       child : FontDetailsScreen(),
+              //       duration: const Duration(milliseconds: 300)
+              //   ),
+              // );
               navigateTo(context, FontDetailsScreen());
             },
             child: Container(
@@ -116,10 +126,11 @@ class _ListViewOfFontsState extends State<ListViewOfFonts> {
                         width: 170,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Material(
-                              elevation: 1,
+                              elevation: 0.5,
+                              borderRadius: BorderRadius.circular(5),
                               child: MyCustomButton(
                                 onTap: () {},
                                 text: 'Download',
@@ -140,11 +151,14 @@ class _ListViewOfFontsState extends State<ListViewOfFonts> {
                               MainAxisAlignment.spaceBetween,
                               children: [
                                 SaveButton(
+                                  elevation: 0.5,
                                   color: Colors.white,
-                                  elevation:1,
+                                  borderRadius: 5,
+                                  width: 53,
                                 ),
                                 Material(
-                                  elevation: 1,
+                                  elevation: 0.5,
+                                  borderRadius: BorderRadius.circular(5),
                                   child: MyCustomButton(
                                     onTap: () {
                                       showQuickScreen(context:context,isIconsScreen: false,isPalettesScreen: false,isGradientScreen: false);
@@ -153,23 +167,24 @@ class _ListViewOfFontsState extends State<ListViewOfFonts> {
                                     iconSize: 26,
                                     color: Colors.white,
                                     paddingVertical: 1,
-                                    borderRadius: 1,
+                                    borderRadius: 5,
                                     height: 30,
-                                    width: 50,
+                                    width: 53,
                                     toolTip: 'Quick View',
                                   ),
                                 ),
                                 Material(
-                                  elevation: 1,
+                                  elevation: 0.5,
+                                  borderRadius: BorderRadius.circular(5),
                                   child: MyCustomButton(
                                     onTap: () {},
                                     text: 'SVG',
                                     textSize: 17,
                                     height: 30,
-                                    width: 50,
+                                    width: 53,
                                     fontFamily: 'Arial Rounded MT',
                                     color: Colors.white,
-                                    borderRadius: 1,
+                                    borderRadius: 5,
                                     toolTip: 'Download SVG',
                                   ),
                                 ),
@@ -178,8 +193,8 @@ class _ListViewOfFontsState extends State<ListViewOfFonts> {
                             const SizedBox(height: 5,),
                             Text('22485  Downloads',
                               style: TextStyle(
-                                color: Colors.grey.withOpacity(0.5),
-                                fontSize: 18,
+                                color: Colors.grey.withOpacity(0.8),
+                                fontSize: 16,
                               ),
                             ),
                           ],

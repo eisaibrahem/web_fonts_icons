@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:portfolio/custom_widgets/custom_buttons/my_custom_button.dart';
 import 'package:portfolio/screens/home_screen/cubit/home_state.dart';
+import 'package:portfolio/screens/icons_screen/cubit/icons_cubit.dart';
 import 'package:portfolio/shared/components.dart';
+import 'package:portfolio/shared/routing/rout_name.dart';
 import '../screens/home_screen/cubit/home_cubit.dart';
 import '../screens/saved_screen/saved_screen.dart';
 import 'custom_buttons/app_bar_button.dart';
@@ -20,73 +22,82 @@ class CustomAppBar extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         HomeCubit cubit = HomeCubit.get(context);
-        return Container(
-          color: Colors.white,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              InkWell(
-                onTap: () {},
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.only(
-                          top: 15.75, left: 25.65, bottom: 11.8, right: 17.6),
-                      child: SvgPicture.asset(
-                        "assets/icons/site-logo.svg",
+        IconsCubit iconsCubit =IconsCubit.get(context);
+        return Builder(
+          builder:(context)=> Container(
+            color: Colors.white,
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap: () {},
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                            top: 15.75, left: 25.65, bottom: 11.8, right: 17.6),
+                        child: SvgPicture.asset(
+                          "assets/icons/site-logo.svg",
+                        ),
                       ),
-                    ),
-                    Text('Site name',
-                        style: TextStyle(
-                          fontFamily: 'Berlin Sans FB',
-                          fontSize: size.width * 0.020,
-                        )
-                    )
-                  ],
+                      Text('Site name',
+                          style: TextStyle(
+                            fontFamily: 'Berlin Sans FB',
+                            fontSize:28,
+                          )
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              buildSearchBar(context, size, cubit),
-              const SizedBox(
-                width: 10,
-              ),
-              MyCustomButton(
-                  fontFamily: 'Arial Rounded MT',
-                  paddingVertical: 5,
-                  paddingHorizontal: 15,
-                  textSize:  20  ,
-                  height:45,
-                  text: 'Saved',
-                  assetSVG: "assets/icons/heart-svgrepo-com.svg",
+                Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      child: buildSearchBar(context, size, cubit,iconsCubit),
+                    )),
+                MyCustomButton(
+                    fontFamily: 'Arial Rounded MT',
+                    paddingVertical: 5,
+                    paddingHorizontal: 18,
+                    textSize:  21  ,
+                    height:45,
+                    text: 'Saved',
+                    assetSVG: "assets/icons/heart-svgrepo-com.svg",
 
-                  onTap: () {
-                     navigateTo(context, SavedScreen());
-                  }),
-              const SizedBox(
-                width: 10,
-              ),
-              MyCustomButton(
-                  paddingVertical: 5,
-                  fontFamily: 'Arial Rounded MT',
-                  paddingHorizontal: 15,
-                  textSize:  20  ,
-                  height:45,
-                  text: 'Contact US',
-                  assetSVG: "assets/icons/message-svgrepo-com.svg",
-                  onTap: () {}),
-            ],
+                    onTap: () {
+                      Navigator.pushNamed(context, SavedRoute);
+                    }),
+                const SizedBox(
+                  width: 10,
+                ),
+                MyCustomButton(
+                    paddingVertical: 5,
+                    fontFamily: 'Arial Rounded MT',
+                    paddingHorizontal: 18,
+                    textSize:  20  ,
+                    height:45,
+                    text: 'Contact US',
+                    assetSVG: "assets/icons/message-svgrepo-com.svg",
+                    onTap: () {
+                      Navigator.pushNamed(context, ContactUsRoute);
+                    }),
+                Container(
+                  width: size.width*0.22,
+                    constraints: BoxConstraints(
+                        maxWidth: 400
+                    )
+                ),
+                const SizedBox(width: 10,)
+              ],
+            ),
           ),
         );
       },
     );
   }
 
-  Widget buildSearchBar(BuildContext context, Size size, HomeCubit cubit) {
+  Widget buildSearchBar(BuildContext context, Size size, HomeCubit cubit,IconsCubit iconsCubit ) {
     return Container(
-      width: size.width * 0.40,
       height: 45,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
@@ -96,7 +107,7 @@ class CustomAppBar extends StatelessWidget {
         textAlign: TextAlign.start,
         controller: cubit.textSearchController,
         onChanged: (value) {
-          cubit.searchForCategory(value);
+          iconsCubit.getSearchIcons(value);
         },
         style: const TextStyle(fontSize: 18, color: Colors.black),
         maxLines: 1,
@@ -124,8 +135,8 @@ class CustomAppBar extends StatelessWidget {
                       Icons.clear,
                       color: cubit.textSearchController.text == ''
                           ? Colors.transparent
-                          : Colors.black87,
-                      size: 25,
+                          : kTextColor,
+                      size: 22,
                     ),
                   ),
                 ),
@@ -218,7 +229,7 @@ class CustomAppBar extends StatelessWidget {
                     )),
               ],
               onChanged: (String? newValue) {
-                cubit.changeSearchCategoryValue(newValue);
+              //TODO function to search for category
               },
             ),
           ),

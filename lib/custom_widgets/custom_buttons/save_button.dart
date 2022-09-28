@@ -70,8 +70,10 @@ class _SaveButtonState extends State<SaveButton> {
       preferredDirection: AxisDirection.down,
       child: Material(
         elevation: widget.elevation,
+        borderRadius:BorderRadius.circular(widget.borderRadius),
         child: Container(
           alignment: Alignment.center,
+          padding: EdgeInsets.symmetric(vertical: widget.paddingVertical),
           decoration: BoxDecoration(
             color: widget.color,
             borderRadius: BorderRadius.circular(widget.borderRadius),
@@ -90,12 +92,10 @@ class _SaveButtonState extends State<SaveButton> {
             const Duration(milliseconds: 200),
             likeBuilder: (bol) {
               return bol
-                  ? Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 2),
-                child: SvgPicture.string(likeSVG,
-                  height:widget.widthSVG,
-                  width: widget.heightSVG,
-                ),
+                  ? Image.asset('assets/images/like.png',
+                height:widget.widthSVG,
+                width: widget.heightSVG,
+                color: kTextColor,
               )
                   : MouseRegion(
                 onEnter: (event){
@@ -109,13 +109,10 @@ class _SaveButtonState extends State<SaveButton> {
                     widget.isHover=false;
                   });
                 },
-                child: Padding(
-                  padding:  const EdgeInsets.symmetric(vertical: 2,horizontal: 0),
-                  child: SvgPicture.asset('assets/icons/disLike.svg',
-                    color:  widget.isHover?kHoverColor:Colors.grey,
-                    height:widget.widthSVG,
-                    width: widget.heightSVG,
-                  ),
+                child: Image.asset('assets/images/disLike.png',
+                  color:  widget.isHover?kHoverColor:Colors.grey,
+                  height:widget.widthSVG,
+                  width: widget.heightSVG,
                 ),
               );
             },

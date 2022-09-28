@@ -22,6 +22,8 @@ class ChangeAngelGradientState extends FontsStates {}
 
 class ChangeCategoryScrollState extends FontsStates {}
 
+class ChangeAlignmentTestTextState extends FontsStates {}
+
 
 //fonts
 class LoadingFontsDateState extends FontsStates {}

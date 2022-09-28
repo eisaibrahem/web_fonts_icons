@@ -23,6 +23,9 @@ class _TableAdsAndHistoryState extends State<TableAdsAndHistory> {
       margin: const EdgeInsets.only(right: 5, bottom: 5, top: 5),
       padding: const EdgeInsets.all(5),
       width: size.width * 0.22,
+      constraints: BoxConstraints(
+        maxWidth: 400
+      ),
       height: size.height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -54,25 +57,20 @@ class _TableAdsAndHistoryState extends State<TableAdsAndHistory> {
               color: Theme.of(context).primaryColor,
               borderRadius: BorderRadius.circular(3),
             ),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  buildCategoryItemHistory(
-                      context,
-                      'assets/icons/fonts-logo.svg', 0,),
-                  const SizedBox(width: 10,),
-                  buildCategoryItemHistory(context,
-                      "assets/icons/icons-logo.svg", 1,),
-                  const SizedBox(width: 10,),
-                  buildCategoryItemHistory(context,
-                      "assets/icons/color-palette-logo.svg", 2,),
-                  const SizedBox(width: 10,),
-                  buildCategoryItemHistory(context,
-                      "assets/icons/gridient-history-logo.svg", 3,),
-                  const SizedBox(width: 5,),
-                ],
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                buildCategoryItemHistory(
+                    context,
+                    'assets/icons/fonts-logo.svg', 0,),
+                buildCategoryItemHistory(context,
+                    "assets/icons/icons-logo.svg", 1,),
+                buildCategoryItemHistory(context,
+                    "assets/icons/color-palette-logo.svg", 2,),
+                buildCategoryItemHistory(context,
+                    "assets/icons/gridient-history-logo.svg", 3,),
+
+              ],
             ),
           ),
           Expanded(

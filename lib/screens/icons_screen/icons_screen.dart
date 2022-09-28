@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/parser.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:portfolio/custom_widgets/custom_buttons/my_custom_button.dart';
 import 'package:portfolio/custom_widgets/custom_buttons/save_button.dart';
 import 'package:portfolio/screens/fonts_screen/fonts_screen.dart';
@@ -16,6 +17,7 @@ import 'package:portfolio/shared/styles/themes.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../custom_widgets/custom_app_bar.dart';
 import '../../custom_widgets/custom_buttons/my_custom_category_item.dart';
+import '../../custom_widgets/item_icons.dart';
 import '../../custom_widgets/table_ads_and_history.dart';
 import '../../custom_widgets/nav_bar_category.dart';
 import '../../models/icons_model.dart';
@@ -44,7 +46,7 @@ class IconsScreen extends StatelessWidget {
            body: Row(
              mainAxisAlignment: MainAxisAlignment.spaceBetween,
              children: [
-               const NavBarCategory(),
+               const NavBarCategory(index:1),
                Expanded(
                  child: ListView(
                    controller: cubit.scrollController,
@@ -74,7 +76,7 @@ class IconsScreen extends StatelessWidget {
                            ),
                            Row(
                              children: List.generate(
-                               13,
+                               10,
                                    (index) => MyCustomCategoryItem(
                                  onTap: () {},
                                  text: 'Animal',
@@ -151,6 +153,9 @@ class IconsScreen extends StatelessWidget {
                              padding: const EdgeInsets.symmetric(
                                  horizontal: 10, vertical: 10),
                              width: size.width * 0.1,
+                             constraints: BoxConstraints(
+                               maxWidth: 300
+                             ),
                              decoration: BoxDecoration(
                                  color: kPrimaryColor,
                                  borderRadius: BorderRadius.circular(1)),
@@ -196,113 +201,7 @@ class IconsScreen extends StatelessWidget {
                          ],
                        ),
                      ),
-                     Container(
-                       constraints: const BoxConstraints(
-                         minHeight: 380
-                       ),
-                       padding: const EdgeInsets.all(10),
-                       margin: const EdgeInsets.all(5),
-                       decoration: BoxDecoration(
-                           color: Colors.white,
-                           borderRadius: BorderRadius.circular(3)),
-                       child: GridView.count(
-                         physics: const NeverScrollableScrollPhysics(),
-                         shrinkWrap: true,
-                         crossAxisCount: 5,
-                         crossAxisSpacing: 5.0,
-                         mainAxisSpacing: 5.0,
-                         scrollDirection: Axis.vertical,
-                         children: List.generate(cubit.listOfSVGIcons.length, (index) {
-                           return checkSVG(cubit.listOfSVGIcons[index])?
-                           Container(
-                             height: 200,
-                             width: 60,
-                             decoration: BoxDecoration(
-                               borderRadius: BorderRadius.circular(3),
-                               color: kPrimaryColor,
-                             ),
-                             child: Column(
-                               mainAxisAlignment: MainAxisAlignment.center,
-                               children: [
-                                 InkWell(
-                                   onTap:(){
-                                     navigateTo(context, IconsDetailsScreen(link:cubit.listOfSVGIcons[index]));
-                                   },
-                                   child:  Padding(
-                                     padding: const EdgeInsets.all(10.0),
-                                     child:ColorFiltered(
-                                       //modulate
-                                       colorFilter:ColorFilter.mode(Colors.white, BlendMode.modulate) ,
-                                       child: SvgPicture.string(
-                                         cubit.listOfSVGIcons[index],
-                                         placeholderBuilder: (BuildContext context)
-                                         => const Center(
-                                             child: CircularProgressIndicator(color: Colors.grey,)
-                                         ),
-                                         height: 80,
-                                         width: 80,
-                                         color: cubit.testColor,
-                                       ),
-                                     ),
-                                   ),
-                                 ),
-                                 const Spacer(),
-                                 Container(
-                                   padding: const EdgeInsets.symmetric(
-                                       horizontal: 5, vertical: 5),
-                                   height: 45,
-                                   child: Row(
-                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                     children: [
-                                       SaveButton(
-                                         color: Colors.white,
-                                         borderRadius: 2,
-                                         height: 40,
-                                         width: 55,
-                                       ),
-                                       MyCustomButton(
-                                         onTap: (){
-                                           showQuickScreen(
-                                               context:context,
-                                               isIconsScreen:true,
-                                               isPalettesScreen: false,
-                                               isGradientScreen: false,
-                                               link:cubit.listOfSVGIcons[index]);
-                                         },
-                                         icon: Icons.remove_red_eye_outlined,
-                                         iconSize: 26,
-                                         color: Colors.white,
-                                         borderRadius: 2,
-                                         toolTip: 'Quick View',
-                                         height: 40,
-                                         width: 55,
-                                       ),
-                                       MyCustomButton(
-                                         icon: Icons.download,
-                                         toolTip: 'Download SVG',
-                                         iconSize: 26,
-                                         color: Colors.white,
-                                         borderRadius: 2,
-                                         height: 40,
-                                         width: 55,
-                                         onTap: ()async{
-                                           await launchUrl(
-                                             Uri.parse(cubit.listOfLinks[index]),
-                                           );
-                                         },
-                                       ),
-                                     ],
-                                   ),
-                                 )
-                               ],
-                             ),
-                           ):
-                           Container();
-
-
-                         }),
-                       ),
-                     ),
+                     ItemIcons(),
                      Padding(
                        padding: const EdgeInsets.symmetric(vertical: 5.0,horizontal: 6),
                        child: LinearProgressIndicator(color: Colors.grey[300],backgroundColor: Colors.grey),

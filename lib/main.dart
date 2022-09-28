@@ -43,12 +43,12 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context)=>FontsCubit()
             ..getAlphabets()
-           // ..getFontsData()
+            ..getFontsData()
             ..changeCategoryScroll()
         ),
         BlocProvider(
           create: (context)=>IconsCubit()
-            //..initialGetIcons()
+            ..initialGetIcons()
 
         ),
         BlocProvider(
@@ -69,11 +69,11 @@ class MyApp extends StatelessWidget {
           darkTheme: darkMode(context),
           themeMode:ThemeMode.light,
           debugShowCheckedModeBanner: false,
-          // builder: (context,child)=>  LayoutTemplate(child: child!),
-          // navigatorKey: locator<NavigationService>().navigatorKey,
-          // onGenerateRoute: generateRoute,
-          // initialRoute: FontsRoute,
-          home: FontsScreen(),
+          builder: (context,child)=> LayoutTemplate(child: child!),
+          navigatorKey: locator<NavigationService>().navigatorKey,
+          onGenerateRoute:generateRoute,
+         // onGenerateRoute: RouteGenerator.generateRoute,
+          initialRoute: FontsRoute,
         );
       },
 
